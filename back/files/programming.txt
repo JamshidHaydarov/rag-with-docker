@@ -1,0 +1,100 @@
+Dasturlash haqida to’liq ma’lumot
+
+Dasturlash — bu kompyuterga ma’lum bir vazifani bajarish uchun
+ko’rsatmalar berish jarayonidir. Bu ko’rsatmalar dasturlash tillari
+orqali yoziladi va kompyuter tomonidan bajariladi. Zamonaviy dunyoda
+dasturlash deyarli barcha texnologiyalarning asosini tashkil qiladi:
+mobil ilovalar, veb-saytlar, sun’iy intellekt tizimlari,
+avtomatlashtirilgan tizimlar va boshqalar.
+
+Dasturlashning paydo bo‘lishi
+
+Dasturlash tarixi juda qadimiy g‘oyalarga borib taqaladi. XIX asrda
+yaratilgan Jakard to‘quv stanogi dasturlashning ilk namunalaridan biri
+hisoblanadi. U perfokartalar orqali naqshlarni boshqarardi. Bu aslida
+“dastur” tushunchasining boshlanishi edi.
+
+Keyinchalik, 1940–1950-yillarda birinchi elektron kompyuterlar paydo
+bo‘ldi. Dastlab dasturlar mashina tilida yozilgan. Bu til 0 va 1 lardan
+iborat bo‘lib, juda murakkab edi. Shuning uchun assembler tillari
+yaratildi, ular orqali dasturchilar kodni biroz qulayroq yozish imkoniga
+ega bo‘ldi.
+
+Dasturlash tillari rivoji
+
+Keyinchalik yuqori darajadagi dasturlash tillari paydo bo‘ldi. Fortran,
+COBOL va Lisp kabi tillar dasturlashni ancha soddalashtirdi. Bu tillar
+inson tiliga yaqinroq bo‘lib, dastur yozishni osonlashtirdi.
+
+1970–1980-yillarda C va Pascal kabi tillar paydo bo‘ldi. Ayniqsa C tili
+juda katta ta’sir ko‘rsatdi. Ko‘plab zamonaviy tizimlar aynan shu til
+asosida yaratilgan. Keyinchalik C++ ob’ektga yo‘naltirilgan dasturlashni
+rivojlantirdi.
+
+1990-yillarda internet rivojlandi va Java, JavaScript, PHP kabi tillar
+paydo bo‘ldi. Bu tillar veb-dasturlashni rivojlantirdi va internet
+xizmatlarini kengaytirdi.
+
+Dasturlash nima uchun kerak?
+
+Dasturlash yordamida: - dasturlar yaratiladi - avtomatlashtirish amalga
+oshiriladi - katta hajmdagi ma’lumotlar qayta ishlanadi - sun’iy
+intellekt tizimlari yaratiladi - o‘yinlar va mobil ilovalar ishlab
+chiqiladi
+
+Dasturlash sohalari
+
+Bugungi kunda dasturlash quyidagi yo‘nalishlarga bo‘linadi:
+
+1.  Veb dasturlash — sayt va web ilovalar yaratish
+2.  Mobil dasturlash — Android va iOS ilovalar
+3.  Backend — server tomoni
+4.  Frontend — foydalanuvchi interfeysi
+5.  Game development — o‘yinlar yaratish
+6.  Data science — ma’lumotlarni tahlil qilish
+7.  AI va Machine Learning — sun’iy intellekt
+
+Algoritm va ma’lumotlar tuzilmasi
+
+Algoritm — bu muammoni hal qilish uchun bosqichma-bosqich ko‘rsatmalar
+ketma-ketligi. Har bir dastur algoritm asosida ishlaydi.
+
+Ma’lumotlar tuzilmasi esa ma’lumotlarni qanday saqlash va boshqarishni
+belgilaydi. Masalan: - array (massiv) - list - stack - queue - tree -
+graph
+
+Zamonaviy texnologiyalar
+
+Bugungi kunda dasturlash juda tez rivojlanmoqda. Quyidagi texnologiyalar
+keng qo‘llaniladi:
+
+-   React, Angular — frontend uchun
+-   Node.js, FastAPI — backend uchun
+-   Docker — containerizatsiya
+-   Git — versiya nazorati
+-   PostgreSQL — ma’lumotlar bazasi
+-   Redis — caching
+-   TensorFlow, PyTorch — sun’iy intellekt
+
+Dasturchi qanday bo‘lishi kerak?
+
+Yaxshi dasturchi quyidagi ko‘nikmalarga ega bo‘lishi kerak: - mantiqiy
+fikrlash - muammoni yechish qobiliyati - algoritmik bilim - yangi
+texnologiyalarni tez o‘rganish
+
+Kelajakdagi dasturlash
+
+Kelajakda dasturlash yanada rivojlanadi. Sun’iy intellekt, kvant
+hisoblash va avtomatlashtirish kuchayadi. Ammo asosiy bilimlar —
+algoritmlar va mantiq — doim muhim bo‘lib qoladi.
+
+Xulosa
+
+Dasturlash bu faqat kasb emas, balki fikrlash uslubi. U insonlarga
+muammolarni yechish, yangi texnologiyalar yaratish va dunyoni
+o‘zgartirish imkonini beradi. Dasturlashni o‘rganish orqali inson
+kelajakda katta imkoniyatlarga ega bo‘lishi mumkin.
+
+Bu soha doim rivojlanib boradi va har doim o‘rganish uchun yangi
+narsalar paydo bo‘ladi. Shu sababli dasturchi doim o‘z ustida ishlashi
+kerak.

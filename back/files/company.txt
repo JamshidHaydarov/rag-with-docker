@@ -1,0 +1,114 @@
+Fictional Company haqida hujjat
+
+Kompaniya nomi: NovaTech Solutions
+
+NovaTech Solutions — bu zamonaviy texnologiyalar asosida innovatsion
+yechimlar ishlab chiqishga ixtisoslashgan xalqaro IT kompaniya
+hisoblanadi. Kompaniya 2018-yilda tashkil etilgan bo‘lib, qisqa vaqt
+ichida bozorda o‘z o‘rniga ega bo‘ldi.
+
+Kompaniya tarixi
+
+NovaTech Solutions dastlab kichik startap sifatida ish boshlagan. Uning
+asoschilari uch nafar yosh dasturchi bo‘lib, ular sun’iy intellekt va
+avtomatlashtirish sohasida katta imkoniyatlar borligini ko‘rishgan.
+Boshlanishida kompaniya kichik loyihalar ustida ishlagan, ammo tez orada
+yirik mijozlar bilan hamkorlikni boshlagan.
+
+Missiya va vizion
+
+Kompaniyaning missiyasi — texnologiyalar orqali biznes jarayonlarini
+soddalashtirish va inson hayotini qulayroq qilish. Vizion esa global IT
+yetakchilar qatoriga kirish va innovatsion mahsulotlar yaratishdir.
+
+Asosiy xizmatlar
+
+NovaTech Solutions quyidagi xizmatlarni taqdim etadi:
+
+1.  Veb ilovalar ishlab chiqish
+2.  Mobil ilovalar yaratish
+3.  Sun’iy intellekt yechimlari
+4.  Bulutli texnologiyalar (Cloud services)
+5.  Ma’lumotlar tahlili (Data analytics)
+6.  DevOps xizmatlari
+
+Texnologiyalar
+
+Kompaniya quyidagi texnologiyalar bilan ishlaydi:
+
+-   Backend: Python, Node.js, Java
+-   Frontend: React, Angular, Vue
+-   Database: PostgreSQL, MongoDB
+-   Cloud: AWS, Google Cloud
+-   AI: TensorFlow, PyTorch
+
+Tashkiliy tuzilma
+
+Kompaniya quyidagi bo‘limlardan iborat:
+
+-   Development team
+-   QA (test) team
+-   DevOps team
+-   Marketing
+-   HR (kadrlar bo‘limi)
+-   Support team
+
+Har bir bo‘lim o‘z vazifasini aniq bajaradi va umumiy maqsadga xizmat
+qiladi.
+
+Xodimlar
+
+NovaTech Solutions’da 150 dan ortiq xodim ishlaydi. Ularning aksariyati
+yuqori malakali mutaxassislardan iborat. Kompaniya xodimlar uchun qulay
+ish sharoitlari yaratadi va ularning rivojlanishiga katta e’tibor
+beradi.
+
+Madaniyat va qadriyatlar
+
+Kompaniyada quyidagi qadriyatlar muhim hisoblanadi:
+
+-   Jamoaviy ish
+-   Innovatsiya
+-   Halollik
+-   Mas’uliyat
+-   Doimiy o‘rganish
+
+Mahsulotlar
+
+Kompaniya bir nechta o‘z mahsulotlariga ega:
+
+1.  NovaCRM — mijozlar bilan ishlash tizimi
+2.  NovaAI — sun’iy intellekt asosidagi chatbot
+3.  NovaCloud — bulutli platforma
+
+Hamkorlar
+
+NovaTech Solutions bir nechta yirik kompaniyalar bilan hamkorlik qiladi.
+Ular orasida banklar, e-commerce platformalar va logistika kompaniyalari
+mavjud.
+
+Bozor va raqobat
+
+Kompaniya IT xizmatlar bozorida faoliyat yuritadi. Raqobatchilar ko‘p
+bo‘lsa-da, NovaTech Solutions innovatsiya va sifat orqali ajralib
+turadi.
+
+Kelajak rejalari
+
+Kompaniya kelajakda quyidagilarni rejalashtirmoqda:
+
+-   Yangi AI mahsulotlar yaratish
+-   Xalqaro bozorlarga chiqish
+-   O‘z platformalarini kengaytirish
+
+Moliyaviy ko‘rsatkichlar
+
+Kompaniya yildan-yilga daromadini oshirib bormoqda. Asosiy daromad
+manbalari xizmatlar va mahsulotlardan iborat.
+
+Xulosa
+
+NovaTech Solutions — bu tez rivojlanayotgan, innovatsion va istiqbolli
+kompaniya hisoblanadi. U zamonaviy texnologiyalar orqali mijozlarga
+yuqori sifatli xizmatlar taqdim etadi va kelajakda yanada katta
+muvaffaqiyatlarga erishish imkoniyatiga ega.
