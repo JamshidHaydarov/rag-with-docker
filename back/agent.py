@@ -24,13 +24,11 @@ embeddings = GoogleGenerativeAIEmbeddings(
 
 
 # Faylni oqish va Document formatiga otkazish
-def load_text_file(file_path: str) -> list[Document]:
-    path = Path(file_path)
-    text = path.read_text(encoding="utf-8")
+def load_text_content(content: str, file_name: str) -> list[Document]:
     return [
         Document(
-            page_content=text,
-            metadata={"source": str(path.name)}
+            page_content=content,
+            metadata={"source": file_name}
         )
     ]
 
@@ -80,8 +78,8 @@ def answer_question(vector_store: InMemoryVectorStore, query: str) -> str:
     return response.content
 
 
-async def main(doc: str, question: str):
-    docs = load_text_file(f"files/{doc}")
+async def main(content: str, file_name: str, question: str):
+    docs = load_text_content(content, file_name)
     chunks = split_documents(docs)
     vector_store = build_vector_store(chunks)
     answer = answer_question(vector_store, question)

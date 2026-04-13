@@ -1,5 +1,7 @@
 from contextlib import asynccontextmanager
 import json
+import PyPDF2
+from io import BytesIO
 from fastapi import Depends, FastAPI, HTTPException, WebSocket, WebSocketDisconnect, UploadFile, File as FastAPIFile
 from agent import  main
 from db.database import AsyncSessionLocal, get_db
@@ -86,24 +88,36 @@ async def upload(
     if not file.filename.lower().endswith(".pdf"):
         raise HTTPException(status_code=400, detail="Faqat PDF fayllarga ruxsat beriladi")
 
-    new_file = File(
-        name=file.filename
-    )
+    # Read PDF content
+    try:
+        pdf_content = await file.read()
+        pdf_reader = PyPDF2.PdfReader(BytesIO(pdf_content))
+        text_content = ""
+        
+        for page in pdf_reader.pages:
+            text_content += page.extract_text()
+        
+        new_file = File(
+            name=file.filename,
+            content=text_content
+        )
 
-    db.add(new_file)
-    await db.commit()
-    await db.refresh(new_file)
+        db.add(new_file)
+        await db.commit()
+        await db.refresh(new_file)
 
-    return {
-        "id": current_user['id'],
-        "username": current_user['username'],
-        "files": [
-            {
-                "id": new_file.id,
-                "name": new_file.name
-            }
-        ]
-    }
+        return {
+            "id": current_user['id'],
+            "username": current_user['username'],
+            "files": [
+                {
+                    "id": new_file.id,
+                    "name": new_file.name
+                }
+            ]
+        }
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=f"PDF o'qish xatosi: {str(e)}")
 
 
 @app.websocket("/chat")
@@ -131,14 +145,21 @@ async def websocket_endpoint(websocket: WebSocket):
                 raw_data = await websocket.receive_text()
                 data = json.loads(raw_data)
 
-                doc_name = ""
-                files = await get_all_files(db=db)
-                for file in files:
-                    if file['id'] == data["file_id"]:
-                        doc_name = file['name']
-                        break
+                # Get file from database
+                result = await db.execute(
+                    select(File).where(File.id == data["file_id"])
+                )
+                file = result.scalar_one_or_none()
+                
+                if not file:
+                    await websocket.send_text("Hatolik: Fayl topilmadi")
+                    continue
+                
+                if not file.content:
+                    await websocket.send_text("Hatolik: Fayl bo'sh yoki qayta yuklanishi kerak")
+                    continue
 
-                response = await main(doc=doc_name, question=data["question"])
+                response = await main(content=file.content, file_name=file.name, question=data["question"])
                 await websocket.send_text(response)
 
     except WebSocketDisconnect:

@@ -14,3 +14,4 @@ class File(Base):
 
     id = Column(Integer, primary_key=True)
     name = Column(String, nullable=False)
+    content = Column(String, nullable=True)
