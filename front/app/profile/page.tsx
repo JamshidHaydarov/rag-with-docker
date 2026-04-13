@@ -1,16 +1,20 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useAuth } from "@/contexts/auth-context";
+import { apiClient } from "@/lib/api";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Sparkles, LogOut, FileText, MessageSquare, Loader2, FolderOpen } from "lucide-react";
+import { Sparkles, LogOut, FileText, MessageSquare, Loader2, FolderOpen, Upload } from "lucide-react";
 
 export default function ProfilePage() {
-  const { user, isAuthenticated, isLoading, logout } = useAuth();
+  const { user, isAuthenticated, isLoading, logout, refreshUser } = useAuth();
   const router = useRouter();
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const [isUploading, setIsUploading] = useState(false);
+  const [uploadError, setUploadError] = useState("");
 
   useEffect(() => {
     if (!isLoading && !isAuthenticated) {
@@ -21,6 +25,38 @@ export default function ProfilePage() {
   const handleLogout = () => {
     logout();
     router.push("/");
+  };
+
+  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setIsUploading(true);
+    setUploadError("");
+
+    try {
+      const response = await apiClient.uploadFile(file);
+      console.log("[v0] File uploaded successfully:", response);
+      
+      // Refresh user data to get the new file
+      await refreshUser();
+      
+      // Find the newly uploaded file and navigate to chat
+      if (response.files && response.files.length > 0) {
+        const newFile = response.files[response.files.length - 1];
+        router.push(`/chat/${newFile.id}`);
+      }
+    } catch (err) {
+      const errorMessage = err instanceof Error ? err.message : "File upload failed";
+      setUploadError(errorMessage);
+      console.error("[v0] Upload error:", err);
+    } finally {
+      setIsUploading(false);
+      // Reset input
+      if (fileInputRef.current) {
+        fileInputRef.current.value = "";
+      }
+    }
   };
 
   if (isLoading) {
@@ -67,11 +103,44 @@ export default function ProfilePage() {
 
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-foreground">Your Files</h1>
-          <p className="mt-2 text-muted-foreground">
-            Select a file to start chatting with AI about its contents
-          </p>
+        <div className="mb-8 flex items-center justify-between">
+          <div>
+            <h1 className="text-3xl font-bold text-foreground">Your Files</h1>
+            <p className="mt-2 text-muted-foreground">
+              Select a file to start chatting with AI about its contents
+            </p>
+          </div>
+          <div className="flex flex-col gap-2">
+            {uploadError && (
+              <div className="p-2 rounded-lg bg-destructive/10 border border-destructive/20 text-destructive text-sm">
+                {uploadError}
+              </div>
+            )}
+            <Button
+              onClick={() => fileInputRef.current?.click()}
+              disabled={isUploading}
+              className="bg-primary text-primary-foreground hover:bg-primary/90"
+            >
+              {isUploading ? (
+                <>
+                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                  Uploading...
+                </>
+              ) : (
+                <>
+                  <Upload className="w-4 h-4 mr-2" />
+                  Upload File
+                </>
+              )}
+            </Button>
+            <input
+              ref={fileInputRef}
+              type="file"
+              onChange={handleFileUpload}
+              className="hidden"
+              disabled={isUploading}
+            />
+          </div>
         </div>
 
         {user.files && user.files.length > 0 ? (
