@@ -1,11 +1,11 @@
 from contextlib import asynccontextmanager
 import json
-from fastapi import Depends, FastAPI, HTTPException, WebSocket, WebSocketDisconnect
+from fastapi import Depends, FastAPI, HTTPException, WebSocket, WebSocketDisconnect, UploadFile, File as FastAPIFile
 from agent import  main
 from db.database import AsyncSessionLocal, get_db
 from db.init import init_db
 from db.models import User, File
-from db.orm import create_user, get_user_by_username_orm
+from db.orm import create_user, get_user_by_username_orm, create_file_orm
 from db.schemas import RegisterAndLoginSchema, TokenSchema, UserResponse
 from service import create_access_token, get_current_user, get_password_hash, get_user_from_token, verify_password, get_all_files
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -23,9 +23,18 @@ async def lifespan(app: FastAPI):
         existing = result.scalars().first()
 
         if not existing:
+            # Create a default user for seed files if needed
+            result_user = await session.execute(select(User).where(User.username == "demo"))
+            demo_user = result_user.scalar_one_or_none()
+            
+            if not demo_user:
+                demo_user = User(username="demo", password="demo_password")
+                session.add(demo_user)
+                await session.flush()
+            
             session.add_all([
-                File(name="company.txt"),
-                File(name="programming.txt"),
+                File(name="company.txt", user_id=demo_user.id),
+                File(name="programming.txt", user_id=demo_user.id),
             ])
             await session.commit()
             print("Seed data created")
@@ -72,6 +81,31 @@ async def register(data: RegisterAndLoginSchema, db: AsyncSession = Depends(get_
     access_token = create_access_token(data={"sub": user.username})
 
     return {"id": user.id, "username": user.username, "token": access_token, "token_type": "bearer"}
+
+
+@app.post("/upload", response_model=UserResponse)
+async def upload_file(
+    file: UploadFile = FastAPIFile(...),
+    current_user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db)
+):
+    try:
+        # Save file with original filename
+        file_name = file.filename or "uploaded_file"
+        
+        # Create file record in database
+        new_file = await create_file_orm(name=file_name, user_id=current_user.id, db=db)
+        
+        # Refresh current_user to get updated files list
+        await db.refresh(current_user)
+        
+        return {
+            "id": current_user.id,
+            "username": current_user.username,
+            "files": [{"id": f.id, "name": f.name} for f in current_user.files]
+        }
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=str(e))
 
 
 @app.websocket("/chat")

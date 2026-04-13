@@ -49,3 +49,11 @@ async def get_file_orm(id: int, db: AsyncSession):
     )
 
     return result.scalar_one_or_none()
+
+
+async def create_file_orm(name: str, user_id: int, db: AsyncSession):
+    new_file = File(name=name, user_id=user_id)
+    db.add(new_file)
+    await db.commit()
+    await db.refresh(new_file)
+    return new_file
