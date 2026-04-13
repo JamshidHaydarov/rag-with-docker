@@ -125,11 +125,15 @@ class ApiClient {
     const formData = new FormData();
     formData.append("file", file);
 
+    const headers: HeadersInit = {};
+    const token = this.getToken();
+    if (token) {
+      headers["Authorization"] = `Bearer ${token}`;
+    }
+
     const response = await fetch(`${API_BASE_URL}/upload`, {
       method: "POST",
-      headers: {
-        Authorization: `Bearer ${this.getToken()}`,
-      },
+      headers,
       body: formData,
     });
 
