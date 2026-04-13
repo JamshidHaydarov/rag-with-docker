@@ -25,3 +25,12 @@ class UserResponse(BaseModel):
 
     class Config:
         from_attributes = True
+
+
+class UserFilesResponse(BaseModel):
+    id: int
+    username: str
+    files: list[FileResponse]
+
+    class Config:
+        from_attributes = True

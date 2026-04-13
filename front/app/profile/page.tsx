@@ -38,13 +38,10 @@ export default function ProfilePage() {
       const response = await apiClient.uploadFile(file);
       console.log("[v0] File uploaded successfully:", response);
       
-      // Refresh user data to get the new file
-      await refreshUser();
-      
-      // Find the newly uploaded file and navigate to chat
+      // Navigate to chat with the uploaded file
       if (response.files && response.files.length > 0) {
-        const newFile = response.files[response.files.length - 1];
-        router.push(`/chat/${newFile.id}`);
+        const uploadedFile = response.files[0];
+        router.push(`/chat/${uploadedFile.id}`);
       }
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : "File upload failed";
