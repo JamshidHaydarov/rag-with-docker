@@ -1,0 +1,32 @@
+services:
+  back:
+    build: ./back
+    ports:
+      - "8080:8080"
+    env_file:
+      - .env
+    depends_on:
+      - db
+      - redis
+
+  front:
+    build: ./front
+    ports:
+      - "4200:4200"
+    depends_on:
+      - back
+
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: rag_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7
+
+volumes:
+  pg_data:
